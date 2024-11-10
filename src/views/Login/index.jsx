@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import {loginService } from '../../services/loginService.js';
 import Cookies from 'js-cookie';
+import { Link } from "react-router-dom";
 
 const Loggin = () => {
   const { register, handleSubmit } = useForm();
@@ -32,6 +33,9 @@ const Loggin = () => {
       </label>
       <input type="submit" value="Enviar" />
     </form>
+    <div>
+      <Link to="/register">Registrarse</Link>
+    </div>
     <div>
       <button onClick={onClickGoogle} >Google</button>
       </div>
