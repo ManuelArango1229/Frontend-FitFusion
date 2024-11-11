@@ -1,0 +1,41 @@
+// src/Components/Footer/Footer.module.scss
+
+.footer {
+  background-color: #000; // Fondo negro
+  color: #ffffff; // Texto blanco
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-top: auto; // Para que el footer esté al final de la página
+}
+
+.copyright {
+  font-size: 0.875rem; // Tamaño de fuente pequeño
+}
+
+.nav {
+  ul {
+    display: flex;
+    gap: 1rem; // Espacio entre los enlaces
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.navList {
+  display: flex;
+  gap: 1rem;
+}
+
+.footerLink {
+  color: #ffffff; // Texto blanco
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    text-decoration: underline; // Subrayado al hacer hover
+    color: #ffffff;
+  }
+}

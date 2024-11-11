@@ -1,0 +1,23 @@
+.button{
+background-color: #32cd32;
+border: none;
+border-radius: 5px;
+color: #fff;
+font-size: 1rem;
+padding: 0.75rem 1.5rem;
+cursor: pointer;
+width: 100%;
+max-width: 200px;
+margin-top: 1rem;
+}
+
+.button:hover {    
+    opacity: 0.9;
+    scale: 1.02;
+}
+
+.button:active {
+    transform: scale(0.98);
+    transition-duration: 75ms;
+    transition: all;
+}
