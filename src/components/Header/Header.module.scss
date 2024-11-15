@@ -1,0 +1,137 @@
+// src/Components/Header/Header.module.scss
+
+.header {
+  background-color: transparent; // Color de fondo inicial
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  position: fixed; // Fija el header en la parte superior
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.scrolled {
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente cuando se hace scroll */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.nav {
+  ul {
+    display: flex;
+    gap: 1rem; // Espacio entre los elementos del menú
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    display: none; // Ocultar el menú en pantallas pequeñas
+  }
+}
+
+.navList {
+  display: flex;
+  gap: 1rem;
+}
+
+.navItem {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem; // Redondeo de las esquinas
+  text-decoration: none;
+  color: #fff;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: transparent;
+    color: #46c432; // Color verde claro al hacer hover
+    border-color: #46c432; // Borde verde claro al hacer hover
+  }
+}
+
+.active {
+  border-color: #46c432; // Borde verde claro cuando está activo
+}
+
+.logoutButton {
+  background-color: #46c432; // Color de fondo verde claro
+  color: #000;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 2rem;
+
+  &:hover {
+    color: #fff; // Color blanco al hacer hover
+  }
+}
+
+.hamburgerIcon {
+  display: none;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+  margin-right: 2rem;
+
+  &.active {
+    display: flex; // Mostrar solo en pantallas pequeñas
+  }
+
+  .bar {
+    width: 2rem;
+    height: 0.2rem;
+    background-color: #fff;
+    border-radius: 0.2rem;
+    transition: 0.3s;
+  }
+}
+
+// Mostrar el botón hamburguesa en pantallas pequeñas
+@media (max-width: 768px) {
+  .hamburgerIcon {
+    display: flex;
+  }
+
+  .nav.showMenu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .navList {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logoutButton {
+    margin-top: 1rem; // Asegurarse de que el botón esté bien separado
+  }
+}

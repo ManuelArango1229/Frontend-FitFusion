@@ -1,0 +1,25 @@
+.googleButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url('../../assets/GoogleLogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.googleButton:active{
+    transform: scale(0.98);
+    transition-duration: 75ms;
+    transition: all;
+}
+
+.googleButton:hover {
+    opacity: 0.9;
+    scale: 1.02;
+}

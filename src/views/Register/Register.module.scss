@@ -1,0 +1,146 @@
+/* Contenedor principal */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  background-color: #181c25;
+  margin: 0;
+  position: relative;
+}
+
+/* Imagen de fondo */
+.imageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/HombreFitness.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6); /* Oscurece la imagen */
+  z-index: 1;
+}
+
+/* Formulario */
+.formContainer {
+  z-index: 10; /* Para que el formulario esté por encima de la imagen de fondo */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  height: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo */
+.companyLogo {
+  width: 150px;
+  height: 150px;
+  background-image: url('../../assets/FitFusionLogoBlack.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 1rem;
+}
+
+.Ptitle {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Campos de entrada */
+.inputField {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%; /* Los inputs ahora ocupan el ancho completo del formulario */
+  max-width: 300px; /* Limita el ancho máximo */
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Radio buttons */
+.radioOptionsContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.radioOptions {
+  display: flex;
+  gap: 1rem;
+}
+
+.radioInput {
+  display: none;
+}
+
+.radioLabel {
+  color: #bbb;
+  cursor: pointer;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.radioLabel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #32cd32;
+  border-radius: 50%;
+}
+
+.radioInput:checked + .radioLabel {
+  color: #fff;
+}
+
+.radioInput:checked + .radioLabel::before {
+  background-color: #32cd32;
+}
+
+.orText {
+  color: #aaa;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.googleButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.loginLink {
+  color: #bbb;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.loginLink a {
+  color: #32cd32;
+  text-decoration: none;
+}
+
+.loginLink a:hover {
+  text-decoration: underline;
+}
