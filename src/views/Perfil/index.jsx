@@ -155,6 +155,7 @@ const Perfil = () => {
                   <p><strong>Sexo:</strong> {formData.sexo}</p>
                   <p><strong>Edad:</strong> 19 años</p>
                   <p><strong>Nivel de experiencia:</strong> Gran Maestro (20 años en adelante)</p>
+                  <p className={styles.discapacidad}><strong>Discapacidad:</strong> No aplica</p>
                 </>
               )}
             </div>
