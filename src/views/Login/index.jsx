@@ -1,22 +1,34 @@
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import { loginService } from '../../services/loginService.js';
-import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import styles from './Login.module.scss';
 import Button from '../../components/Button/Button';
 import GoogleButton from '../../components/GoogleButton/GoogleButton';
+import { useNavigate } from 'react-router';
+import { useDataUserStore } from '../../services/state/userDataStore'
+
 
 const Loggin = () => {
   const { register, handleSubmit } = useForm();
-  const [respuesta, setRespuesta] = useState("");
+  const navigate = useNavigate();
+  const setEmail = useDataUserStore(state => state.setUserEmail);
+  const setRole = useDataUserStore(state => state.setUserRole);
+  const setId = useDataUserStore(state => state.setUserId);
+  const setName = useDataUserStore(state => state.setUserName);
+  const setBirthDay = useDataUserStore(state => state.setUserBirthDay);
+  const setPhone = useDataUserStore(state => state.setUserPhone);
   
   const onSubmit = (data) => {
     loginService(data.email, data.password)
       .then(result => {
-        setRespuesta(result.message);
-        const token = Cookies.get('accessToken');
-        console.log('token: ', token);
+        console.log(result);
+        setId(result.id);
+        setEmail(result.emailUser);
+        setRole(result.role);
+        setName(result.name);
+        setBirthDay(result.birthdate);
+        setPhone(result.phone);
+        navigate("/home");
       });
   };
 
@@ -37,7 +49,6 @@ const Loggin = () => {
         <p className={styles.subtitle}>Entrena la mejor versión de ti</p>
         
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Campos de Email y Password */}
           <input 
             {...register("email", { required: true })} 
             placeholder="Email" 
@@ -55,7 +66,6 @@ const Loggin = () => {
             ¿No tienes cuenta? <Link to="/register">Create una</Link>
           </div>
 
-          {/* Botón de login */}
           <Button type="submit">Login</Button>
         </form>
 

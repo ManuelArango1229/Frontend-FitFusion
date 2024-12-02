@@ -1,10 +1,13 @@
 
 
-export const registerService = async (email, password, role) => {
+export const registerService = async (email, password, role, name, birthdate, phone) => {
   const newBody = JSON.stringify({
     email,
     password,
-    role
+    role,
+    name,
+    birthdate,
+    phone
   });
     
   const response = await fetch("http://localhost:3000/api/auth/register", {

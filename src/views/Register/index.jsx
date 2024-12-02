@@ -1,15 +1,18 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { registerService } from '../../services/registerService.js';
 import Button from '../../components/Button/Button';
 import GoogleButton from '../../components/GoogleButton/GoogleButton';
 import styles from './Register.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    registerService(data.name, data.password, data.option);
+    registerService(data.email, data.password, data.option, data.name, data.fechaNacimiento, data.telefono);
+    reset();
+    navigate("/");
   };
 
   const onClickGoogle = () => {
@@ -28,8 +31,23 @@ const Register = () => {
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           {/* Campos de Nombre y Password */}
           <input
+            {...register("email", { required: true })}
+            placeholder="email*"
+            className={styles.inputField}
+          />
+          <input
             {...register("name", { required: true })}
             placeholder="Nombre*"
+            className={styles.inputField}
+          />
+          <input
+            {...register("fechaNacimiento", { required: true })}
+            placeholder="Fecha de Nacimiento*"
+            className={styles.inputField}
+          />
+          <input
+            {...register("telefono", { required: true })}
+            placeholder="Telefono*"
             className={styles.inputField}
           />
           <input

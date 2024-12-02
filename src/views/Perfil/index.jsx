@@ -3,19 +3,24 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { FaCog } from 'react-icons/fa'; // Importa el icono de la tuerca
 import styles from './Perfil.module.scss';
+import { useDataUserStore } from '../../services/state/userDataStore'
 
 const Perfil = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const email = useDataUserStore(state => state.userEmail);
+  const name = useDataUserStore(state => state.userName);
+  const birthdate = useDataUserStore(state => state.userBirthDay);
+  const phone = useDataUserStore(state => state.userPhone);
 
-  // Intenta recuperar los datos guardados en localStorage o usa valores predeterminados
+  console.log(email, name, birthdate, phone);
   const getStoredData = () => {
-    const storedData = localStorage.getItem('perfilData');
+    const storedData = localStorage.getItem('perfilData.');
     if (storedData) {
       return JSON.parse(storedData);
     }
     return {
-      nombre: 'El Verdadero JAMM',
-      correo: 'test3@test.com',
+      nombre: name,
+      correo: email,
       sexo: 'Masculino',
       altura: '2.70 m',
       peso: '68 kg',
@@ -84,12 +89,11 @@ const Perfil = () => {
             </div>
           </div>
 
-          {/* Columna izquierda: Foto y datos básicos */}
           <div className={styles.leftColumn}>
             <div
               className={styles.profileImage}
                           >
-              {/* Foto de perfil que se actualizará cuando el usuario elija una nueva imagen */}
+            
             </div>
             <div className={styles.userInfo}>
               {isEditing ? (
@@ -99,7 +103,7 @@ const Perfil = () => {
                     <input
                       type="text"
                       name="nombre"
-                      value={formData.nombre}
+                      value={name}
                       onChange={handleChange}
                       className={styles.inputField} 
                     />
@@ -109,7 +113,7 @@ const Perfil = () => {
                     <input
                       type="email"
                       name="correo"
-                      value={formData.correo}
+                      value={email}
                       onChange={handleChange}
                       className={styles.inputField} 
                     />
@@ -127,7 +131,7 @@ const Perfil = () => {
                     </select>
                   </label>
                   <label>
-                    ' 'Altura:
+                    Altura:
                     <input
                       type="text"
                       name="altura"
@@ -149,11 +153,11 @@ const Perfil = () => {
                 </>
               ) : (
                 <>
-                  <p><strong>Nombre:</strong> {formData.nombre}</p>
-                  <p><strong>Correo:</strong> {formData.correo}</p>
-                  <p><strong>Fecha de Nacimiento:</strong> 08/11/2005</p>
+                  <p><strong>Nombre:</strong> {name}</p>
+                  <p><strong>Correo:</strong> {email}</p>
+                  <p><strong>Fecha de Nacimiento:</strong> {birthdate}</p>
+                  <p><strong>Telefono:</strong> {phone}</p>
                   <p><strong>Sexo:</strong> {formData.sexo}</p>
-                  <p><strong>Edad:</strong> 19 años</p>
                   <p><strong>Nivel de experiencia:</strong> Gran Maestro (20 años en adelante)</p>
                 </>
               )}

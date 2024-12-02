@@ -4,6 +4,7 @@ import { useWindowScroll } from 'react-use';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo_black from '../../assets/FitFusionLogoBlack.png';
 import styles from './Header.module.scss';
+import Cookies from 'js-cookie';
 
 const Header = () => {
   const [stateHeader, setStateHeader] = useState(false);
@@ -23,6 +24,7 @@ const Header = () => {
 
   const handleLogout = () => {
     console.log('Sesión cerrada');
+    Cookies.remove('accessToken');
     navigate('/');
   };
 
