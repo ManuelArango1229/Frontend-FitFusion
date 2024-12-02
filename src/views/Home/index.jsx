@@ -18,7 +18,7 @@ const Home = () => {
         <section className={styles.hero}>
           <h1>¡Tu mejor versión empieza hoy!</h1>
           <p>Transforma tu cuerpo, transforma tu mente</p>
-          <Link to="/rutinas">
+          <Link to="/routines">
             <Button className={styles.button}>Comienza ahora</Button>
           </Link>
         </section>
@@ -54,8 +54,8 @@ const Home = () => {
 
         <section className={styles.ctaSecondary}>
           <h3>¿Estás listo para empezar..?</h3>
-          <Link to="/rutinas">
-            <Button className={styles.button}>Explorar Rutinas</Button>
+          <Link to="/routines">
+            <Button>Explorar Rutinas</Button>
           </Link>
         </section>
       </main>
