@@ -57,29 +57,32 @@
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  display: grid; /* Cambiamos a un diseño de grid */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dos columnas ajustables */
+  gap: 1.5rem; /* Espaciado entre los inputs */
+  justify-content: center; /* Centra las columnas horizontalmente */
+  align-items: center; /* Centra las filas verticalmente */
+  width: 100%; /* El formulario ocupa todo el ancho */
+  max-width: 600px; /* Limita el ancho máximo para pantallas grandes */
+  margin: 0 auto; /* Centra el formulario en la página */
 }
 
 /* Campos de entrada */
 .inputField {
   margin-top: 0.5rem;
   padding: 0.75rem;
-  font-size: 1rem;
-  width: 100%; /* Los inputs ahora ocupan el ancho completo del formulario */
+  font-size: 1rem; /* Los inputs ahora ocupan el ancho completo del formulario */
   max-width: 300px; /* Limita el ancho máximo */
   border: 1px solid #ccc;
   border-radius: 0.75rem;
-  margin-bottom: 1.25rem;
 }
 
 /* Radio buttons */
 .radioOptionsContainer {
+  grid-column: span 2; /* Abarca ambas columnas */
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  gap: 2rem;
 }
 
 .radioOptions {
@@ -121,19 +124,19 @@
 .orText {
   color: #aaa;
   text-align: center;
-  margin-top: 1rem;
+  grid-column: span 2; /* Abarca ambas columnas */
 }
 
 .googleButtonContainer {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  grid-column: span 2; /* Abarca ambas columnas */
 }
 
 .loginLink {
   color: #bbb;
   text-align: center;
-  margin-top: 1rem;
+  grid-column: span 2;
 }
 
 .loginLink a {
@@ -143,4 +146,8 @@
 
 .loginLink a:hover {
   text-decoration: underline;
+}
+
+.loginLink p {
+  margin: 52rem;
 }

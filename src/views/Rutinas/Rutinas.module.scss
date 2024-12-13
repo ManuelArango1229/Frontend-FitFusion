@@ -1,78 +1,87 @@
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; // Ocupa al menos la altura completa de la ventana
-    width: 100%; // Se adapta al ancho completo de la pantalla
-    margin: 0;
-    overflow-x: hidden; // Evita el desplazamiento horizontal
-    background-color: rgba(0, 0, 0, 0.8); // Fondo negro semitransparente
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Ocupa al menos la altura completa de la ventana
+  width: 100%; // Se adapta al ancho completo de la pantalla
+  margin: 0;
+  overflow-x: hidden; // Evita el desplazamiento horizontal
+  background-color: rgba(0, 0, 0, 0.8); // Fondo negro semitransparente
+  padding-top: 1rem;
+}
+
+.imageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/FondoHome.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8); // Oscurece la imagen
+  z-index: -1; // Asegura que la imagen de fondo esté detrás de todo
+}
+
+.main {
+  position: relative;
+  z-index: 2; // Asegura que el contenido principal esté por encima de la imagen de fondo
+  padding: 2rem;
+  margin-top: 1rem;
+  color: #ffffff; // Color del texto
+  margin-bottom: 4rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap; // Permite que los bloques se reorganicen automáticamente
+  justify-content: center; // Centra los bloques
+  gap: 1.5rem; // Espaciado entre los bloques
+
+  @media (max-width: 768px) {
+    flex-direction: column; // Apila los bloques en pantallas pequeñas
+    align-items: center; // Centra los bloques al apilarlos
   }
-  
-  .imageBackground {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../../assets/FondoHome.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.8); // Oscurece la imagen
-    z-index: -1; // Asegura que la imagen de fondo esté detrás de todo
-  }
-  
-  
-  .main {
-    position: relative;
-    z-index: 2; // Asegura que el contenido principal esté por encima de la imagen de fondo
-    padding: 2rem;
-    margin-top: 1rem;
-    color: #ffffff; // Color del texto
+}
+
+.card {
+  position: relative;
+  width: 20%; /* Ajusta el ancho de cada cuadro */
+  aspect-ratio: 1; /* Mantén la proporción cuadrada */
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
 
-  .grid {
-    display: flex;
-    flex-direction: row; /* Cuadros en una fila */
-    justify-content: space-around; /* Espacio entre cuadros */
-    flex-wrap: wrap; /* Para que sean responsivos */
-    gap: 1.5rem; /* Separación entre los cuadros */
+  @media (max-width: 768px) {
+    width: 80%; // Ocupa la mayor parte del ancho en pantallas pequeñas
   }
-  
-  .card {
-    position: relative;
-    width: 20%; /* Ajusta el ancho de cada cuadro */
-    aspect-ratio: 1; /* Mantén la proporción cuadrada */
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-    &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    }
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #46c432; /* Verde para resaltar */
   }
-  
-  .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-  
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #46c432; /* Verde para resaltar */
-    }
-  
-    p {
-      font-size: 1.2rem;
-    }
+
+  p {
+    font-size: 1.2rem;
   }
+}

@@ -12,7 +12,7 @@ import DayFour from '../views/Rutinas/Days/dayFour/';
 import Terms from '../views/TerminosCondiciones/';
 import FAQ from '../views/FAQ/';
 import About from '../views/About/';
-import Estadisticas from '../views/Estadisticas/';
+import Statistics from '../views/Statistics/';
 import Perfil from '../views/Perfil/';
 
 
@@ -35,8 +35,8 @@ const router = createBrowserRouter(
       element: <Rutinas />
     },
     {
-      path: "estadisticas",
-      element: <Estadisticas />
+      path: "statistics",
+      element: <Statistics />
     },
     {
       path: "perfil",
