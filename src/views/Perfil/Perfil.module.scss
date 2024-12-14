@@ -1,13 +1,12 @@
 .container {
   position: relative;
-  display: block;
+  display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
   margin: 0;
   overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.8);
-  padding-top: 1rem;
 }
 
 .imageBackground {
@@ -29,15 +28,6 @@
   padding: 2rem;
   margin-top: 1rem;
   color: #ffffff;
-  margin-bottom: 3rem;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #ffffff;
 }
 
 .profileContainer {
@@ -45,11 +35,13 @@
   justify-content: column;
   background-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
   border-radius: 0.5rem;
   padding: 2rem;
   color: #46c432;
   gap: 1.5rem;
   position: relative;
+  margin-bottom: 5rem;
 }
 
 .settingsButton {
@@ -108,23 +100,13 @@
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #46c432;
-  background-image: url('../../assets/Fotoperfil.jpg');
-  background-size: cover;
-  background-position: center;
+  background-color: #ccc;
+  margin-bottom: 1rem;
 }
-
-.data {
-  color: #46c432;
-  margin-bottom: 0.5rem;
-}
-
-.userInfo {
+.leftColumn, .rightColumn {
   font-size: 1rem;
   line-height: 1.6;
   color: #fff;
-  
 
   strong {
     color: #46c432;
@@ -141,23 +123,15 @@
   }
 }
 
-.saveButton {
-  text-align: center;
-  margin-top: 2rem;
-
-  button {
-    padding: 0.8rem 2rem;
-    background-color: #46c432;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #3a9a2b;
-    }
-  }
+.profileImage {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #46c432;
+  background-image: url('../../assets/Fotoperfil.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .discapacidad{
@@ -166,14 +140,11 @@
   }
 }
 
-.inputField {
-  margin-top: 0.5rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  width: 80%;
-  border-width: 1px;
-  border-radius: 0.75rem;
-  margin-bottom: 1.25rem;
-  margin-left: 0.5rem;
-  margin-right: 1rem;
-} 
+/* Se adapta a pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .leftColumn,
+  .rightColumn {
+    width: 100%; 
+    text-align: center; 
+  }
+}

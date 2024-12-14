@@ -5,44 +5,76 @@ import styles from "./Perfil.module.scss";
 import useStore from "../../services/statemanagement.js";
 import { useState, useEffect } from "react";
 
-/*
-  id
-  emailUser
-  passwordUser
-  role
-  token
-  name
-  birthdate
-  phone
-*/
+const calculateAge = (birthdate) => {
+  if (!birthdate) return "No disponible";
+  const birthDateObj = new Date(birthdate);
+  const today = new Date();
+  let age = today.getFullYear() - birthDateObj.getFullYear();
+  const monthDiff = today.getMonth() - birthDateObj.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+    age--;
+  }
+  return age;
+};
 
-/*
- currentStats: {
-    weight: 70,
-    height: 175,
-    measureBiceps: 40,
-    measureChest: 100,
-    measureHip: 90,
-    measureWaist: 80,
-    measureLeg: 60,
-    date: 2024-12-02T01:39:19.327Z,
-    _id: new ObjectId('674d0fc7bf2926923137ff54')
-  },
- */
 const Perfil = () => {
   const { user, stats } = useStore();
   const [data, setData] = useState({});
   const [statsData, setStatsData] = useState({});
+  
+  const handleOptionsClick = (option) => {
+    if (option === 'update') {
+      console.log('Actualizar datos');
+    } else if (option === 'delete') {
+      console.log('Eliminar cuenta');
+    }
+  }
 
   useEffect(() => {
     setData(user);
-    setStatsData(stats.currentStats);
+    if (stats){
+      setStatsData(stats.currentStats);
+    }
   }, [user, stats]);
 
   return (
-    <div>
-      <p>Name: {data?.name || "No hay nombre disponible"}</p>
-      <p>Pecho: {statsData?.measureChest || "No hay medida"}</p>
+    <div className={styles.container}>
+      <div className={styles.imageBackground}></div>
+        <Header />
+        <main className={styles.main}>
+          <h1 className={styles.title}>Perfil de Usuario</h1>
+          <div className={styles.profileContainer}>
+            <div className={styles.settingsButton}>
+              <FaCog />
+                <div className={styles.dropdownMenu}>
+                  <button onClick={() => handleOptionsClick('update')}>Actualizar datos</button>
+                  <button onClick={() => handleOptionsClick('delete')}>Eliminar cuenta</button>
+                </div>
+            </div>
+
+            <div className={styles.leftColumn}>
+              <div className={styles.profileImage}></div>
+              <p><strong>Nombre:</strong> {data?.name || "No hay nombre disponible"}</p>
+              <p><strong>ID:</strong> {data?.id || "No hay id disponible"}</p>
+              <p><strong>Correo:</strong> {data?.emailUser || "No hay email disponible"}</p>
+              <p><strong>Edad:</strong> {calculateAge(data?.birthdate)}</p>
+              <p><strong>Fecha de Nacimiento:</strong> {data?.birthdate || "No hay fecha disponible"} </p>
+              <p><strong>Telefono:</strong> {data?.phone || "No hay numero telefonico disponible"}</p>
+              <p><strong>Rol del usuario:</strong> {data?.role || "No hay rol disponible"}</p>
+            </div>
+
+            <div className={styles.rightColumn}>
+              <p><strong>Peso:</strong> {statsData?.weight || "No hay medida"}</p>
+              <p><strong>Altura:</strong> {statsData?.height || "No hay medida"}</p>
+              <p><strong>Medida en Biceps:</strong> {statsData?.measureBiceps || "No hay medida"}</p>
+              <p><strong>Medida en Pecho:</strong> {statsData?.measureChest|| "No hay medida"}</p>
+              <p><strong>Medida en Cadera:</strong> {statsData?.measureHip || "No hay medida"}</p>
+              <p><strong>Medida en Cintura:</strong> {statsData?.measureWaist || "No hay medida"}</p>
+              <p><strong>Medida en Pierna:</strong> {statsData?.measureLeg || "No hay medida"}</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
     </div>
   );
 };
