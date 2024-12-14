@@ -1,16 +1,14 @@
-export const loginService = async (email, password) => {
+export const statsService = async (id) => {
   const bodyContent = JSON.stringify({
-    email: email,
-    password: password,
+    userId: id,
   });
 
-  const response = await fetch("http://localhost:3000/api/auth/login", {
+  const response = await fetch("http://localhost:3000/api/stats/", {
     method: "POST",
     body: bodyContent,
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
   });
 
   const data = await response.json();

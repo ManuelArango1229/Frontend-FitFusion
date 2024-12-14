@@ -1,23 +1,30 @@
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { loginService } from '../../services/loginService.js';
-import Cookies from 'js-cookie';
-import { Link } from "react-router-dom";
-import styles from './Login.module.scss';
-import Button from '../../components/Button/Button';
-import GoogleButton from '../../components/GoogleButton/GoogleButton';
+import { useForm } from "react-hook-form";
+import { loginService } from "../../services/loginService.js";
+import { statsService } from "../../services/StatsService.js";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./Login.module.scss";
+import Button from "../../components/Button/Button";
+import GoogleButton from "../../components/GoogleButton/GoogleButton";
+import useStore from "../../services/statemanagement.js";
 
-const Loggin = () => {
+const Login = () => {
   const { register, handleSubmit } = useForm();
-  const [respuesta, setRespuesta] = useState("");
-  
+  const { setUser, setStats } = useStore();
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
-    loginService(data.email, data.password)
-      .then(result => {
-        setRespuesta(result.message);
-        const token = Cookies.get('accessToken');
-        console.log('token: ', token);
-      });
+    loginService(data.email, data.password).then((result) => {
+      const name = result.name;
+      if (name) {
+        statsService("12345").then((statsResult) => {
+          setStats(statsResult);
+        });
+        setUser(result);
+        navigate("/home");
+      } else {
+        alert("credenciales invalidas");
+      }
+    });
   };
 
   const onClickGoogle = () => {
@@ -35,19 +42,19 @@ const Loggin = () => {
 
         {/* Frase inspiradora */}
         <p className={styles.subtitle}>Entrena la mejor versión de ti</p>
-        
+
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Campos de Email y Password */}
-          <input 
-            {...register("email", { required: true })} 
-            placeholder="Email" 
-            className={styles.inputField} 
+          <input
+            {...register("email", { required: true })}
+            placeholder="Email"
+            className={styles.inputField}
           />
-          <input 
-            {...register("password", { required: true })} 
-            type="password" 
-            placeholder="Password" 
-            className={styles.inputField} 
+          <input
+            {...register("password", { required: true })}
+            type="password"
+            placeholder="Password"
+            className={styles.inputField}
           />
 
           {/* Enlace de registro */}
@@ -61,18 +68,17 @@ const Loggin = () => {
 
         {/* Texto "O inicia sesión con" */}
         <p className={styles.orText}>O inicia sesión con</p>
-        
+
         {/* Botón de Google */}
-        <GoogleButton onClick={onClickGoogle} />  
-        
+        <GoogleButton onClick={onClickGoogle} />
       </div>
 
       {/* Contenedor de la imagen lateral */}
       <div className={styles.imageContainer}>
-      <div className={styles.largeImage}></div>
+        <div className={styles.largeImage}></div>
       </div>
     </div>
   );
 };
 
-export default Loggin;
+export default Login;
