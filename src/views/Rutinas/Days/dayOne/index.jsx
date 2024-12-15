@@ -75,8 +75,12 @@ const dayOneExercises = [
     }
   ];
   
+const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+};
 
 const dayOne = () => {
+  const shuffledExercises = shuffleArray([...dayOneExercises]);
   return (
     <div className={styles.container}>
         <div className={styles.imageBackground}></div>
@@ -85,7 +89,7 @@ const dayOne = () => {
             <h1>Dia 1: Pierna</h1>
             <div className={styles.exercises}>
 
-            {dayOneExercises.map((exercise, index) => (
+            {shuffledExercises.map((exercise, index) => (
                 <div key={index} className={styles.exerciseBlock}>
                 <div className={styles.gifContainer}>
                 <img src={exercise.gif} alt={exercise.name} />

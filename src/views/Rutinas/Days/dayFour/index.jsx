@@ -74,9 +74,14 @@ const dayOneExercises = [
         gif: VuelosLaterales,
     }
   ];
+
+const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+};
   
 
 const dayOne = () => {
+  const shuffledExercises = shuffleArray([...dayOneExercises]);
   return (
     <div className={styles.container}>
         <div className={styles.imageBackground4}></div>
@@ -85,15 +90,15 @@ const dayOne = () => {
             <h1>Dia 4: Cuerpo Entero</h1>
             <div className={styles.exercises}>
 
-            {dayOneExercises.map((exercise, index) => (
-                <div key={index} className={styles.exerciseBlock}>
+            {shuffledExercises.map((exercise, index) => (
+              <div key={index} className={styles.exerciseBlock}>
                 <div className={styles.gifContainer}>
-                <img src={exercise.gif} alt={exercise.name} />
+                  <img src={exercise.gif} alt={exercise.name} />
                 </div>
                 <div className={styles.details}>
-                <h2 className={styles.exerciseTitle}>{exercise.name}</h2>
-                <p className={styles.reps}><strong>{exercise.reps}</strong></p>
-                <div className={styles.textContent}>
+                  <h2 className={styles.exerciseTitle}>{exercise.name}</h2>
+                  <p className={styles.reps}><strong>{exercise.reps}</strong></p>
+                  <div className={styles.textContent}>
                  <p>{exercise.description}</p>
                 <div
                   dangerouslySetInnerHTML={{ __html: exercise.details }}
