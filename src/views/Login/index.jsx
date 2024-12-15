@@ -1,79 +1,31 @@
-import { useForm } from "react-hook-form";
-import { loginService } from "../../services/loginService.js";
-import { statsService } from "../../services/StatsService.js";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./Login.module.scss";
-import Button from "../../components/Button/Button";
-import GoogleButton from "../../components/GoogleButton/GoogleButton";
+import { useNavigate } from "react-router-dom";
 import useStore from "../../services/statemanagement.js";
+import { onSubmit, onClickGoogle } from "./logic/utilities.js";
+import { Suspense, lazy } from 'react';
+import styles from "./styles/Login.module.scss";
+
+const LoginForm = lazy(() => import('./components/LoginForm'));
+const GoogleLoginButton = lazy(() => import('./components/GoogleLoginButton'));
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const { setUser, setStats } = useStore();
+  const { setUser, setStats, setRoutine } = useStore();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    loginService(data.email, data.password).then((result) => {
-      const name = result.name;
-      if (name) {
-        statsService("12345").then((statsResult) => {
-          setStats(statsResult);
-        });
-        setUser(result);
-        navigate("/home");
-      } else {
-        alert("credenciales invalidas");
-      }
-    });
-  };
-
-  const onClickGoogle = () => {
-    window.location.href = "http://localhost:3000/api/auth/google";
+  const handleFormSubmit = (data) => {
+    onSubmit(data, setStats, setRoutine, setUser, navigate);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
-        {/* Logo de la empresa - Esto se manejará desde CSS */}
         <div className={styles.companyLogo}></div>
-
-        {/* Título de la aplicación */}
         <h1 className={styles.Ptitle}>FITFUSION</h1>
-
-        {/* Frase inspiradora */}
         <p className={styles.subtitle}>Entrena la mejor versión de ti</p>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Campos de Email y Password */}
-          <input
-            {...register("email", { required: true })}
-            placeholder="Email"
-            className={styles.inputField}
-          />
-          <input
-            {...register("password", { required: true })}
-            type="password"
-            placeholder="Password"
-            className={styles.inputField}
-          />
-
-          {/* Enlace de registro */}
-          <div className={styles.registerLink}>
-            ¿No tienes cuenta? <Link to="/register">Create una</Link>
-          </div>
-
-          {/* Botón de login */}
-          <Button type="submit">Login</Button>
-        </form>
-
-        {/* Texto "O inicia sesión con" */}
-        <p className={styles.orText}>O inicia sesión con</p>
-
-        {/* Botón de Google */}
-        <GoogleButton onClick={onClickGoogle} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LoginForm onSubmit={handleFormSubmit} />
+          <GoogleLoginButton onClick={onClickGoogle} />
+        </Suspense>
       </div>
-
-      {/* Contenedor de la imagen lateral */}
       <div className={styles.imageContainer}>
         <div className={styles.largeImage}></div>
       </div>

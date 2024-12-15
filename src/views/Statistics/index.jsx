@@ -4,6 +4,8 @@ import { Line, Bar, Pie } from "react-chartjs-2";
 import { Chart as ChartJS, registerables } from "chart.js";
 import styles from "./Statistics.module.scss";
 import useStore from "../../services/statemanagement.js";
+import { useEffect } from "react";
+import { statsService } from "../../services/StatsService.js";
 
 ChartJS.register(...registerables);
 
@@ -22,7 +24,13 @@ const generateChartData = (labels, data, label) => ({
 
 
 const Statistics = () => {
-  const { stats } = useStore();
+  const { user, stats, setStats } = useStore();
+
+  useEffect(() => {
+    statsService(user.id).then((data) => {
+      setStats(data);
+    });
+    }, [stats, setStats]);
 
   const statsHistory = stats?.statsHistory || [];
   const currentStats = stats?.currentStats || {};

@@ -6,8 +6,10 @@ import dia2img from "../../assets/exercises/EspaldaFondo.jpg";
 import dia3img from "../../assets/exercises/PechoFondo.jpg";
 import dia4img from "../../assets/exercises/FullbodyFondo.jpg";
 import styles from "./Rutinas.module.scss";
+import useStore from "../../services/statemanagement.js";
 
 const Rutinas = () => {
+  const { routine } = useStore();
   const days = [
     { day: "Día 1", muscle: "Pierna", image: dia1img, link: "/dayOne" },
     { day: "Día 2", muscle: "Espalda", image: dia2img, link: "/dayTwo" },

@@ -56,7 +56,6 @@
   transition: opacity 0.5s ease-out;
 
   .dropdownMenu {
-    display: none;
     position: absolute;
     top: 2rem;
     right: 0;
@@ -64,9 +63,10 @@
     border-radius: 0.375rem;
     overflow: hidden;
     width: 150px;
-    transition: opacity 0.3s;
     opacity: 0;
-
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    pointer-events: none; /* Asegura que no interactúe cuando está oculto */
 
     button {
       background: none;
@@ -76,20 +76,25 @@
       cursor: pointer;
       width: 100%;
       text-align: left;
-      font-size: 1rem; // Tamaño de fuente reducido (14px aproximadamente)
-      
+      font-size: 1rem;
+
       &:hover {
         background-color: #333;
-        transition: 0.10s;
+        transition: 0.1s;
       }
     }
   }
 
-  &:hover .dropdownMenu {
-    display: block;
+  &.open .dropdownMenu {
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Permite la interacción cuando está visible */
   }
 }
+
+
+
+
 
 .leftColumn, .rightColumn {
   width: 48%;

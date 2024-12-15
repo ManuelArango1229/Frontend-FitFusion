@@ -1,4 +1,3 @@
-import React from "react";
 import Slider from "react-slick";
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
