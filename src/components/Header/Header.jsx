@@ -30,7 +30,7 @@ const Header = () => {
     { name: 'Home', path: '/home' },
     { name: 'Rutinas', path: '/routines' },
     { name: 'Estadísticas', path: '/statistics' },
-    { name: 'Perfil', path: '/perfil' },
+    { name: 'Perfil', path: '/profile' },
   ];
 
   const toggleMenu = () => {

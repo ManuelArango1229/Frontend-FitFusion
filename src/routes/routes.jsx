@@ -8,11 +8,11 @@ import DayOne from "../views/Rutinas/Days/dayOne/";
 import DayTwo from "../views/Rutinas/Days/dayTwo/";
 import DayThree from "../views/Rutinas/Days/dayThree/";
 import DayFour from "../views/Rutinas/Days/dayFour/";
-import Terms from "../views/TerminosCondiciones/";
+import Terms from "../views/TermsConditions";
 import FAQ from "../views/FAQ/";
 import About from "../views/About/";
 import Statistics from "../views/Statistics/";
-import Perfil from "../views/Perfil/";
+import Profile from "../views/Profile";
 
 const router = createBrowserRouter([
   {
@@ -36,8 +36,8 @@ const router = createBrowserRouter([
     element: <Statistics />,
   },
   {
-    path: "perfil",
-    element: <Perfil />,
+    path: "profile",
+    element: <Profile />,
   },
   {
     path: "dayOne",
