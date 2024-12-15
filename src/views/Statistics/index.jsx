@@ -1,137 +1,142 @@
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import { Line, Bar, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, registerables } from 'chart.js';
-import styles from './Statistics.module.scss';
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import { Line, Bar, Pie } from "react-chartjs-2";
+import { Chart as ChartJS, registerables } from "chart.js";
+import styles from "./Statistics.module.scss";
+import useStore from "../../services/statemanagement.js";
 
 ChartJS.register(...registerables);
 
 const lineChartDataWeight = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de Peso',
+      label: "Progreso de Peso",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const lineChartDataBiceps = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de tamaño de Biceps',
+      label: "Progreso de tamaño de Biceps",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const lineChartDataPectoral = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de tamaño de Pectoral',
+      label: "Progreso de tamaño de Pectoral",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const lineChartDataCintura = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de tamaño de Cintura',
+      label: "Progreso de tamaño de Cintura",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const lineChartDataLeg = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de tamaño de Pierna',
+      label: "Progreso de tamaño de Pierna",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const lineChartDataCadera = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de tamaño de cadera',
+      label: "Progreso de tamaño de cadera",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const lineChartDataIMC = {
-  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
   datasets: [
     {
-      label: 'Progreso de IMC',
+      label: "Progreso de IMC",
       data: [5, 10, 15, 20, 25, 30],
-      borderColor: '#46C432',
-      backgroundColor: 'rgba(70, 196, 50, 0.2)',
+      borderColor: "#46C432",
+      backgroundColor: "rgba(70, 196, 50, 0.2)",
       tension: 0.3,
     },
   ],
 };
 
 const barChartData = {
-  labels: ['Cardio', 'Fuerza', 'Flexibilidad', 'Resistencia'],
+  labels: ["Cardio", "Fuerza", "Flexibilidad", "Resistencia"],
   datasets: [
     {
-      label: 'Horas por semana',
+      label: "Horas por semana",
       data: [8, 5, 3, 6],
-      backgroundColor: ['#46C432', '#10B9E0', '#CEE0E4', '#08232C'],
-      borderColor: '#ffffff',
+      backgroundColor: ["#46C432", "#10B9E0", "#CEE0E4", "#08232C"],
+      borderColor: "#ffffff",
       borderWidth: 1,
     },
   ],
 };
 
 const pieChartData = {
-  labels: ['Proteínas', 'Carbohidratos', 'Grasas'],
+  labels: ["Proteínas", "Carbohidratos", "Grasas"],
   datasets: [
     {
       data: [40, 35, 25],
-      backgroundColor: ['#46C432', '#10B9E0', '#CEE0E4'],
-      hoverBackgroundColor: ['#39a02a', '#0a9fc7', '#a9ccd0'],
+      backgroundColor: ["#46C432", "#10B9E0", "#CEE0E4"],
+      hoverBackgroundColor: ["#39a02a", "#0a9fc7", "#a9ccd0"],
     },
   ],
 };
 
-
 const Statistics = () => {
+  const { stats } = useStore();
+  const peso = stats.currentStats.weight;
+  const array = stats.statsHistory;
+  const pesosArray = array.map((x) => x.weight);
+  pesosArray.push(peso);
+  console.log(pesosArray);
   return (
     <div className={styles.container}>
       <div className={styles.imageBackground}></div>
-      <Header/>
+      <Header />
       <main className={styles.main}>
         <h1>ESTADISTICAS</h1>
         <div className={styles.chartsContainer}>
-
-        <div className={styles.chart}>
+          <div className={styles.chart}>
             <h2>Progreso de Peso</h2>
             <Line data={lineChartDataWeight} />
           </div>
@@ -166,7 +171,7 @@ const Statistics = () => {
             <Line data={lineChartDataIMC} />
           </div>
 
-        {/*   Por si se necesitan usar
+          {/*   Por si se necesitan usar
           <div className={styles.chart}>
             <h2>Distribución de Tiempo</h2>
             <Bar data={barChartData} />
@@ -178,10 +183,9 @@ const Statistics = () => {
           </div>
 
           */}
-
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
