@@ -8,11 +8,11 @@ const ProfileModal = ({ onClose, userId }) => {
   const [formData, setFormData] = useState({
     weight: "",
     height: "",
-    measureBiceps: "",
-    measureChest: "",
-    measureWaist: "",
-    measureHip: "",
-    measureLeg: "",
+    biceps: "",
+    chest: "",
+    waist: "",
+    hip: "",
+    leg: "",
   });
 
   const handleInputChange = (e) => {
@@ -38,7 +38,7 @@ const ProfileModal = ({ onClose, userId }) => {
                 name={key}
                 value={formData[key]}
                 onChange={handleInputChange}
-                placeholder={`Ingrese ${key}`}
+                placeholder={`Ingrese ${key} en cm`}
                 required
                 className={styles.inputField}
               />
