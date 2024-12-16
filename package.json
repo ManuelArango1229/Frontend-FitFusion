@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview"
   },
   "dependencies": {
     "chart.js": "^4.4.7",
     "js-cookie": "^3.0.5",
+    "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
@@ -23,7 +25,8 @@
     "react-slick": "^0.30.2",
     "react-use": "^17.5.1",
     "slick-carousel": "^1.8.1",
-    "zustand": "^5.0.2"
+    "zustand": "^5.0.2",
+    "vite": "^5.4.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
@@ -37,7 +40,6 @@
     "globals": "^15.11.0",
     "sass": "^1.83.0",
     "sass-embedded": "^1.83.0",
-    "sass-loader": "^16.0.4",
-    "vite": "^5.4.10"
+    "sass-loader": "^16.0.4"
   }
 }

@@ -1,9 +1,12 @@
+
+
 export const statsService = async (id) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const bodyContent = JSON.stringify({
     userId: id,
   });
 
-  const response = await fetch("http://localhost:3000/api/stats/", {
+  const response = await fetch(`${apiUrl}/api/stats/`, {
     method: "POST",
     body: bodyContent,
     headers: {
@@ -16,7 +19,7 @@ export const statsService = async (id) => {
 };
 
 export const statsUpdateService = async (id, updated) => {
-  console.log("Datos enviados:", updated);
+  const apiUrl = import.meta.env.VITE_API_URL;
   const bodyContent = JSON.stringify({
     userId: id,
     stats: {
@@ -30,7 +33,7 @@ export const statsUpdateService = async (id, updated) => {
     },
   });
 
-  const response = await fetch("http://localhost:3000/api/stats", {
+  const response = await fetch(`${apiUrl}/api/stats`, {
     method: "PUT",
     body: bodyContent,
     headers: {

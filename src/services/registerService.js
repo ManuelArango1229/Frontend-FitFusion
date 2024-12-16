@@ -1,4 +1,7 @@
+import process from 'process';
 
+
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const registerService = async (email, password, role) => {
   const newBody = JSON.stringify({
@@ -7,7 +10,7 @@ export const registerService = async (email, password, role) => {
     role
   });
     
-  const response = await fetch("http://localhost:3000/api/auth/register", {
+  const response = await fetch(`${apiUrl}/api/auth/register`, {
     method: 'POST',
     mode: 'cors',
     credentials: 'include',

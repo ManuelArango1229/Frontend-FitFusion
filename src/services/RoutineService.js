@@ -1,9 +1,11 @@
+
 export const createRoutineService = async (
   userId,
   name,
   description,
   dailyRoutines,
 ) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const bodyContent = JSON.stringify({
     userId,
     name,
@@ -11,7 +13,7 @@ export const createRoutineService = async (
     dailyRoutines,
   });
 
-  const response = await fetch("http://localhost:3000/api/routines", {
+  const response = await fetch(`${apiUrl}/api/routines`, {
     method: "POST",
     body: bodyContent,
     headers: {
@@ -29,8 +31,9 @@ export const createRoutineService = async (
 
 export const getUserRoutinesService = async (userId) => {
   try {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const response = await fetch(
-      `http://localhost:3000/api/routines/${userId}`,
+      `${apiUrl}/api/routines/${userId}`,
       {
         method: "GET",
         headers: {
@@ -53,8 +56,9 @@ export const getUserRoutinesService = async (userId) => {
 
 export const deleteRoutineService = async (routineId) => {
   try {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const response = await fetch(
-      `http://localhost:3000/api/routines/${routineId}`,
+      `${apiUrl}/api/routines/${routineId}`,
       {
         method: "DELETE",
         headers: {

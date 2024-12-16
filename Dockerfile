@@ -1,19 +1,13 @@
 FROM node:18 AS build
-
 WORKDIR /app
-
 COPY package.json package-lock.json ./
-
 RUN npm install
-
 COPY . .
-
 RUN npm run build
-
-FROM nginx:alpine
-
-COPY --from=build /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:18 AS production
+WORKDIR /app
+COPY --from=build /app/package.json /app/package-lock.json ./
+RUN npm install --only=production
+COPY --from=build /app/dist ./dist
+EXPOSE 3000
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]

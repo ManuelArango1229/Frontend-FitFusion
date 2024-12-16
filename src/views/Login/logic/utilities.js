@@ -2,9 +2,7 @@ import { loginService } from "../../../services/loginService.js";
 import { statsService } from "../../../services/StatsService.js";
 import { getUserRoutinesService } from "../../../services/RoutineService.js";
 
-
 export const onSubmit = (data, setStats, setRoutine, setUser, navigate) => {
-    console.log("presionado");
     loginService(data.email, data.password).then((result) => {
       const name = result.name;
       if (name) {
@@ -23,5 +21,6 @@ export const onSubmit = (data, setStats, setRoutine, setUser, navigate) => {
   };
 
   export const onClickGoogle = () => {
-    window.location.href = "http://localhost:3000/api/auth/google";
+    const apiUrl = import.meta.env.VITE_API_URL;
+    window.location.href = `${apiUrl}/api/auth/google`;
   };

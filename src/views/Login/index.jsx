@@ -4,6 +4,7 @@ import { onSubmit, onClickGoogle } from "./logic/utilities.js";
 import { Suspense, lazy } from 'react';
 import styles from "./styles/Login.module.scss";
 
+
 const LoginForm = lazy(() => import('./components/LoginForm'));
 const GoogleLoginButton = lazy(() => import('./components/GoogleLoginButton'));
 
