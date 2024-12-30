@@ -21,4 +21,4 @@ spec:
             - containerPort: 5173
           env:
             - name: VITE_API_URL
-              value: "http://192.168.49.2:30001"
+              value: "http://104.154.209.130:3000"

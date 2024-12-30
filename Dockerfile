@@ -9,5 +9,5 @@ WORKDIR /app
 COPY --from=build /app/package.json /app/package-lock.json ./
 RUN npm install --only=production
 COPY --from=build /app/dist ./dist
-EXPOSE 3000
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
+EXPOSE 5173
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]

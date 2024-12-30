@@ -13,7 +13,7 @@ export const createRoutineService = async (
     dailyRoutines,
   });
 
-  const response = await fetch(`${apiUrl}/api/routines`, {
+  const response = await fetch(`http://${apiUrl}/api/routines`, {
     method: "POST",
     body: bodyContent,
     headers: {

@@ -6,7 +6,7 @@ export const statsService = async (id) => {
     userId: id,
   });
 
-  const response = await fetch(`${apiUrl}/api/stats/`, {
+  const response = await fetch(`http://${apiUrl}/api/stats/`, {
     method: "POST",
     body: bodyContent,
     headers: {
@@ -33,7 +33,7 @@ export const statsUpdateService = async (id, updated) => {
     },
   });
 
-  const response = await fetch(`${apiUrl}/api/stats`, {
+  const response = await fetch(`http://${apiUrl}/api/stats`, {
     method: "PUT",
     body: bodyContent,
     headers: {
